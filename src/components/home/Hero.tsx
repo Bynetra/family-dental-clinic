@@ -20,11 +20,13 @@ export function Hero({ locale }: { locale: Locale }) {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:pb-24 lg:pt-16">
-        <div className="animate-rise">
-          <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-pine-800/15 bg-white/80 px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-pine-800 shadow-2xs backdrop-blur-xs">
+      <div className="relative mx-auto grid max-w-6xl min-w-0 grid-cols-1 gap-12 px-4 pb-16 pt-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:pb-24 lg:pt-16">
+        <div className="min-w-0 animate-rise">
+          <div className="inline-flex min-w-0 max-w-full items-center gap-2 rounded-full border border-pine-800/15 bg-white/80 px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-pine-800 shadow-2xs backdrop-blur-xs">
             <ShieldCheck className="h-4 w-4 shrink-0 text-pine-700" aria-hidden="true" />
-            <span className="truncate">{dict.hero.kicker}</span>
+            <span className="min-w-0 whitespace-normal break-words leading-snug">
+              {dict.hero.kicker}
+            </span>
           </div>
 
           <h1 className="mt-5 font-display text-3xl font-semibold leading-[1.2] text-ink sm:text-5xl lg:text-[3.25rem] break-words">
@@ -60,7 +62,7 @@ export function Hero({ locale }: { locale: Locale }) {
           </ul>
         </div>
 
-        <div className="relative animate-rise [animation-delay:120ms]">
+        <div className="relative min-w-0 animate-rise [animation-delay:120ms]">
           <div className="relative overflow-hidden rounded-4xl border border-pine-900/10 bg-white p-2 shadow-card">
             <div className="overflow-hidden rounded-[calc(2rem-4px)]">
               <Image
