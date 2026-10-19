@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
+import { LinkPendingIndicator } from "@/components/common/LinkPendingIndicator";
 
 export function Logo({ locale }: { locale: Locale }) {
   return (
@@ -32,6 +33,9 @@ export function Logo({ locale }: { locale: Locale }) {
           Physio Rehab
         </span>
       </span>
+      <LinkPendingIndicator
+        label={locale === "ur" ? "ہوم پیج لوڈ ہو رہا ہے" : "Loading home page"}
+      />
     </Link>
   );
 }

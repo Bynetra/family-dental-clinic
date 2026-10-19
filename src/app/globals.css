@@ -5,14 +5,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    max-width: 100vw;
+    overflow-x: clip;
   }
 
   body {
-    @apply bg-cream font-body text-ink antialiased;
-  }
-
-  ::selection {
-    @apply bg-pine-200 text-pine-950;
+    @apply bg-cream font-body text-ink antialiased selection:bg-pine-200 selection:text-pine-950;
+    max-width: 100vw;
+    overflow-x: clip;
   }
 
   :focus-visible {
@@ -26,10 +27,32 @@
     line-height: 2.15;
   }
 
+  html[lang="ur"] h1,
+  html[lang="ur"] h2,
+  html[lang="ur"] h3,
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
+    line-height: 1.85;
+  }
+
   html[lang="ur"] .font-display,
   [dir="rtl"] .font-display {
     font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
-    line-height: 2;
+    line-height: 1.8;
+  }
+
+  .route-loading-copy--ur {
+    display: none;
+  }
+
+  html[lang="ur"] .route-loading-copy--en {
+    display: none;
+  }
+
+  html[lang="ur"] .route-loading-copy--ur {
+    display: inline;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -48,17 +71,64 @@
 
 @layer utilities {
   .animate-rise {
-    animation: rise 0.7s ease-out both;
+    animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   @keyframes rise {
     from {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(14px);
     }
     to {
       opacity: 1;
       transform: none;
     }
+  }
+
+  .route-progress__bar {
+    animation: route-progress-ltr 1.05s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    will-change: transform;
+  }
+
+  html[dir="rtl"] .route-progress__bar {
+    animation-name: route-progress-rtl;
+  }
+
+  @keyframes route-progress-ltr {
+    from {
+      transform: translateX(-110%);
+    }
+    to {
+      transform: translateX(310%);
+    }
+  }
+
+  @keyframes route-progress-rtl {
+    from {
+      transform: translateX(110%);
+    }
+    to {
+      transform: translateX(-310%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .route-progress__bar {
+      width: 100%;
+      animation: none !important;
+      transform: none;
+      opacity: 0.8;
+    }
+  }
+
+  /* Isolate phone numbers, codes, and English acronyms inside RTL text */
+  .isolate-bidi {
+    unicode-bidi: isolate;
+  }
+
+  .ltr-text {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
   }
 }

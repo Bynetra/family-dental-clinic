@@ -22,14 +22,13 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const dynamicParams = false;
-
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const locale = isLocale(params.locale) ? params.locale : "en";
+  const { locale: rawLocale } = await params;
+  const locale = isLocale(rawLocale) ? rawLocale : "en";
   const dict = getDictionary(locale);
   return {
     metadataBase: new URL(site.url),
@@ -38,15 +37,16 @@ export async function generateMetadata({
   };
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  if (!isLocale(params.locale)) notFound();
-  const locale: Locale = params.locale;
+  const { locale: rawLocale } = await params;
+  if (!isLocale(rawLocale)) notFound();
+  const locale: Locale = rawLocale;
   const dir = getDirection(locale);
   const dict = getDictionary(locale);
 

@@ -148,7 +148,7 @@ const en = {
       },
       {
         title: "Frozen Shoulder (کندھا جام)",
-        desc: "Gentle joint mobilization and exercise therapy to eliminate shoulder pain and restore full arm reach.",
+        desc: "Gentle joint mobilization and exercise therapy to relieve shoulder pain and improve arm mobility.",
       },
       {
         title: "Sciatica (شیٹیکا)",
@@ -511,11 +511,11 @@ const ur: Dictionary = {
       },
       {
         title: "کندھا جام - فروزن شولڈر (Frozen Shoulder)",
-        desc: "کندھے کی سخت اکڑاہٹ، درد اور ہاتھ اوپر اٹھانے میں دشواری کا آسان اور مستقل حل۔",
+        desc: "کندھے کی سخت اکڑاہٹ، درد اور ہاتھ اوپر اٹھانے میں دشواری کے لیے مؤثر فزیوتھراپی۔",
       },
       {
         title: "شیٹیکا (Sciatica)",
-        desc: "کولہے سے ٹانگ کے نیچے تک جانے والے شدید اعصابی درد سے بغیر سرجری نجات۔",
+        desc: "کولہے سے ٹانگ کے نیچے تک جانے والے شدید اعصابی درد کے لیے ٹارگٹڈ فزیوتھراپی اور ریلیف۔",
       },
       {
         title: "جوڑوں کا درد اور گھٹنے کی تکلیف (Arthritis)",

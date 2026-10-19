@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LinkPendingIndicator } from "@/components/common/LinkPendingIndicator";
 
 export default function NotFound() {
   return (
@@ -22,12 +23,14 @@ export default function NotFound() {
           className="inline-flex items-center gap-2 rounded-full bg-pine-800 px-6 py-3 font-semibold text-white transition-colors hover:bg-pine-700"
         >
           Home (English)
+          <LinkPendingIndicator label="Loading English home page" />
         </Link>
         <Link
           href="/ur"
           className="inline-flex items-center gap-2 rounded-full border border-pine-800/30 bg-white px-6 py-3 font-semibold text-pine-800 transition-colors hover:bg-pine-50"
         >
           ہوم پیج (اردو)
+          <LinkPendingIndicator label="اردو ہوم پیج لوڈ ہو رہا ہے" />
         </Link>
       </div>
     </div>

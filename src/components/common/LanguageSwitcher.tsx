@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
+import { LinkPendingIndicator } from "@/components/common/LinkPendingIndicator";
 
 const items: Array<{ code: Locale; label: string }> = [
   { code: "en", label: "English" },
@@ -22,6 +23,7 @@ export function LanguageSwitcher({
   className?: string;
 }) {
   const pathname = usePathname();
+  const pendingLabel = locale === "ur" ? "زبان تبدیل ہو رہی ہے" : "Switching language";
 
   const hrefFor = (target: Locale) => {
     const segments = (pathname || `/${locale}`).split("/");
@@ -47,11 +49,14 @@ export function LanguageSwitcher({
             hrefLang={item.code}
             aria-current={active ? "true" : undefined}
             className={cn(
-              "rounded-full px-3 py-1 transition-colors",
-              active ? "bg-pine-800 text-white" : "text-ink/70 hover:text-ink"
+              "inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-medium text-xs sm:text-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-700",
+              active
+                ? "bg-pine-800 text-white shadow-xs"
+                : "text-ink/70 hover:text-ink hover:bg-pine-900/5"
             )}
           >
             {item.label}
+            <LinkPendingIndicator label={pendingLabel} />
           </Link>
         );
       })}

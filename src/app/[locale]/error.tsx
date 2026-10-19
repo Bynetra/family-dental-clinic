@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AlertCircle, RefreshCw, MessageCircle } from "lucide-react";
 import { site } from "@/config/site";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { LinkPendingIndicator } from "@/components/common/LinkPendingIndicator";
 
 export default function ErrorBoundary({
   error,
@@ -52,6 +53,7 @@ export default function ErrorBoundary({
           className="inline-flex items-center gap-2 rounded-full border border-pine-800/20 bg-white px-6 py-3 text-sm font-semibold text-pine-800 hover:bg-pine-50"
         >
           Home
+          <LinkPendingIndicator label="Loading home page / ہوم پیج لوڈ ہو رہا ہے" />
         </Link>
       </div>
     </main>

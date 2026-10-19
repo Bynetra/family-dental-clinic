@@ -13,28 +13,34 @@ import { PhysiotherapistProfile } from "@/components/home/PhysiotherapistProfile
 import { FAQ } from "@/components/home/FAQ";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale };
-}): Metadata {
-  const dict = getDictionary(params.locale);
-  return pageMetadata(params.locale, "", dict.meta.home.title, dict.meta.home.description);
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = getDictionary(locale);
+  return pageMetadata(locale, "", dict.meta.home.title, dict.meta.home.description);
 }
 
-export default function HomePage({ params }: { params: { locale: Locale } }) {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
   return (
     <>
-      <JsonLd locale={params.locale} />
-      <Hero locale={params.locale} />
-      <AboutPreview locale={params.locale} />
-      <FeaturedServices locale={params.locale} />
-      <ConditionsSection locale={params.locale} />
-      <WhyChooseUs locale={params.locale} />
-      <HowItWorks locale={params.locale} />
-      <PhysiotherapistProfile locale={params.locale} />
-      <FAQ locale={params.locale} />
-      <FinalCTA locale={params.locale} />
+      <JsonLd locale={locale} />
+      <Hero locale={locale} />
+      <AboutPreview locale={locale} />
+      <FeaturedServices locale={locale} />
+      <ConditionsSection locale={locale} />
+      <WhyChooseUs locale={locale} />
+      <HowItWorks locale={locale} />
+      <PhysiotherapistProfile locale={locale} />
+      <FAQ locale={locale} />
+      <FinalCTA locale={locale} />
     </>
   );
 }

@@ -37,14 +37,16 @@ export function WhyChooseUs({ locale }: { locale: Locale }) {
             return (
               <div
                 key={item.title}
-                className="flex gap-4 rounded-3xl border border-pine-900/10 bg-cream p-6"
+                className="group flex gap-4 rounded-3xl border border-pine-900/10 bg-cream/70 p-6 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:border-pine-800/20 hover:bg-white hover:shadow-sm"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-pine-800/10 text-pine-800">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pine-800/10 text-pine-800 transition-colors group-hover:bg-pine-800 group-hover:text-white">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <div>
-                  <h3 className="font-semibold text-ink">{item.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink/65">
+                  <h3 className="font-semibold text-ink group-hover:text-pine-900 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink/70">
                     {item.desc}
                   </p>
                 </div>
