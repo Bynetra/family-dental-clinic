@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-body text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-pine-200 text-pine-950;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-pine-600 ring-offset-2 ring-offset-cream;
+  }
+
+  /* Urdu (Nastaliq) typography: generous line-height is required for legibility. */
+  html[lang="ur"] body,
+  [dir="rtl"] {
+    font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
+    line-height: 2.15;
+  }
+
+  html[lang="ur"] .font-display,
+  [dir="rtl"] .font-display {
+    font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
+    line-height: 2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .animate-rise {
+    animation: rise 0.7s ease-out both;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

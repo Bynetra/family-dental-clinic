@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" fill="none">
+  <rect width="720" height="560" fill="#0E4F4A"/>
+  <circle cx="600" cy="90" r="130" fill="#145753"/>
+  <circle cx="90" cy="470" r="150" fill="#0A3B37"/>
+  <!-- clinic building -->
+  <rect x="240" y="180" width="240" height="240" rx="16" fill="#FBFAF6"/>
+  <rect x="216" y="150" width="288" height="34" rx="12" fill="#9DBBA6"/>
+  <rect x="330" y="240" width="60" height="60" rx="10" fill="#0E4F4A"/>
+  <path d="M360 254v32M344 270h32" stroke="#FBFAF6" stroke-width="8" stroke-linecap="round"/>
+  <rect x="276" y="330" width="52" height="90" rx="8" fill="#145753"/>
+  <rect x="392" y="330" width="52" height="90" rx="8" fill="#145753"/>
+  <!-- path -->
+  <path d="M360 560v-120" stroke="#9DBBA6" stroke-width="16" stroke-linecap="round" stroke-dasharray="4 26"/>
+  <!-- care arcs -->
+  <path d="M140 240c40-70 120-90 180-46" stroke="#9DBBA6" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+  <path d="M520 400c50 20 76 66 66 116" stroke="#5E9B95" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+</svg>

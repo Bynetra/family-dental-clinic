@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="640" viewBox="0 0 800 640" fill="none">
+  <rect width="800" height="640" fill="#E6EFE7"/>
+  <circle cx="640" cy="120" r="180" fill="#FBFAF6" opacity="0.7"/>
+  <circle cx="120" cy="540" r="140" fill="#FBFAF6" opacity="0.5"/>
+  <!-- motion arcs -->
+  <path d="M80 460c120-180 380-200 520-60" stroke="#9DBBA6" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+  <path d="M110 500c110-150 330-170 460-50" stroke="#5E9B95" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+  <path d="M140 536c100-120 280-140 400-44" stroke="#3C807B" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <!-- stylized figure stretching -->
+  <circle cx="400" cy="230" r="42" fill="#0E4F4A"/>
+  <path d="M400 272c-8 60-10 110-6 158" stroke="#0E4F4A" stroke-width="26" stroke-linecap="round"/>
+  <path d="M396 300c-52 10-88 40-104 88" stroke="#0E4F4A" stroke-width="18" stroke-linecap="round"/>
+  <path d="M398 302c54 4 96 30 120 74" stroke="#0E4F4A" stroke-width="18" stroke-linecap="round"/>
+  <path d="M394 430c-34 40-56 74-64 112" stroke="#0E4F4A" stroke-width="20" stroke-linecap="round"/>
+  <path d="M394 430c36 36 58 70 66 108" stroke="#0E4F4A" stroke-width="20" stroke-linecap="round"/>
+  <!-- pulse line -->
+  <path d="M250 200h60l20-48 32 96 22-48h66" stroke="#FBFAF6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
