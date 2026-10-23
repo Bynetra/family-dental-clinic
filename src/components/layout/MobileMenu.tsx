@@ -63,7 +63,7 @@ export function MobileMenu({
       {/* Backdrop overlay */}
       {open && (
         <div
-          className="fixed inset-0 top-[4.5rem] z-30 bg-ink/20 backdrop-blur-xs transition-opacity lg:hidden"
+          className="fixed inset-0 top-[4.75rem] z-30 bg-ink/20 backdrop-blur-sm transition-opacity lg:hidden"
           onClick={() => setOpen(false)}
           aria-hidden="true"
         />
@@ -73,7 +73,7 @@ export function MobileMenu({
       <div
         id="mobile-menu"
         className={cn(
-          "absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-b border-pine-900/10 bg-cream shadow-xl transition-all duration-200 ease-out lg:hidden",
+          "absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-4.75rem)] overflow-y-auto overscroll-contain border-b border-pine-900/10 bg-cream shadow-xl transition-all duration-200 ease-out lg:hidden",
           open
             ? "visible translate-y-0 opacity-100"
             : "invisible -translate-y-2 pointer-events-none opacity-0"

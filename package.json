@@ -2,7 +2,7 @@
   "name": "mian-channu-physio-rehab",
   "version": "1.0.0",
   "private": true,
-  "description": "Bilingual (English/Urdu) physiotherapy website for Mian Channu Physio Rehab",
+  "description": "Bilingual physiotherapy website for Dr Rana Shahid in Mian Channu",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

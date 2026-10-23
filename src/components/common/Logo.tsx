@@ -1,36 +1,41 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Locale } from "@/lib/i18n/config";
 import { LinkPendingIndicator } from "@/components/common/LinkPendingIndicator";
+import { cn } from "@/lib/utils";
 
-export function Logo({ locale }: { locale: Locale }) {
+export function Logo({
+  locale,
+  inverse = false,
+}: {
+  locale: Locale;
+  inverse?: boolean;
+}) {
   return (
     <Link
       href={`/${locale}`}
-      className="flex shrink-0 items-center gap-2.5"
-      aria-label={locale === "ur" ? "میاں چنوں فیزیو ری ہیب — ہوم" : "Mian Channu Physio Rehab — Home"}
+      className="group flex shrink-0 items-center gap-3"
+      aria-label={locale === "ur" ? "ڈاکٹر رانا شاہد فزیوتھراپسٹ — ہوم" : "Dr Rana Shahid Physiotherapist — Home"}
     >
-      <svg width="38" height="38" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect width="48" height="48" rx="12" className="fill-pine-800" />
-        <path
-          d="M10 30c6-12 22-12 28 0"
-          stroke="#9DBBA6"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-        <path
-          d="M14 30h6l3-8 4 14 3-6h6"
-          stroke="#ffffff"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <Image
+        src={inverse ? "/brand/rana-shahid-mark-inverse.svg" : "/brand/rana-shahid-mark.svg"}
+        alt=""
+        width={42}
+        height={42}
+        className="h-10 w-10 transition-transform duration-300 group-hover:-rotate-3"
+        aria-hidden="true"
+      />
       <span className="leading-tight">
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-700">
-          Mian Channu
+        <span
+          className={cn(
+            "block text-[10px] font-semibold uppercase tracking-[0.2em]",
+            inverse ? "text-sage-light" : "text-pine-700"
+          )}
+        >
+          {locale === "ur" ? "کنسلٹنٹ فزیوتھراپسٹ" : "Consultant Physiotherapist"}
         </span>
-        <span className="block font-display text-lg font-semibold text-ink">
-          Physio Rehab
+        <span className={cn("block font-display text-lg font-semibold", inverse ? "text-white" : "text-ink")}>
+          {locale === "ur" ? "ڈاکٹر رانا شاہد" : "Dr Rana Shahid"}
         </span>
       </span>
       <LinkPendingIndicator

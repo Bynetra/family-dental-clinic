@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, MessageCircle, Phone, Clock, ArrowUpRight } from "lucide-react";
+import { MapPin, MessageCircle, Phone, Clock } from "lucide-react";
 import { site } from "@/config/site";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
@@ -20,22 +20,22 @@ export function Footer({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <footer className="border-t border-pine-900/10 bg-sand">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:gap-8">
+    <footer className="hairline-grid bg-pine-950 text-white">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:gap-10 lg:px-8 lg:py-20">
         {/* Brand & Introduction */}
         <div className="space-y-4">
-          <Logo locale={locale} />
-          <p className="text-sm leading-relaxed text-ink/75">{dict.footer.about}</p>
-          <div className="inline-flex items-center gap-2 rounded-full border border-pine-900/10 bg-white/70 px-3 py-1.5 text-xs font-medium text-pine-800">
-            <Clock className="h-3.5 w-3.5 text-pine-700" aria-hidden="true" />
-            <span>{locale === "ur" ? "پیر تا ہفتہ: صبح 10 تا شام 4 بجے" : "Mon – Sat: 10:00 AM – 4:00 PM"}</span>
+          <Logo locale={locale} inverse />
+          <p className="text-sm leading-relaxed text-white/65">{dict.footer.about}</p>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-sage-light">
+            <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>{site.openingHours[0].days[locale]}: {site.openingHours[0].time[locale]}</span>
           </div>
-          <p className="text-xs text-ink/50">{dict.footer.languageNote}</p>
+          <p className="text-xs text-white/45">{dict.footer.languageNote}</p>
         </div>
 
         {/* Quick navigation */}
         <nav aria-label="Footer Navigation">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-pine-800">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-sage-light">
             {dict.footer.quickLinks}
           </h3>
           <ul className="mt-4 space-y-2.5">
@@ -43,7 +43,7 @@ export function Footer({ locale }: { locale: Locale }) {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex items-center text-sm text-ink/70 transition-colors hover:text-pine-900 hover:underline hover:underline-offset-4"
+                  className="inline-flex items-center text-sm text-white/65 transition-colors hover:text-white"
                 >
                   {link.label}
                   <LinkPendingIndicator label={pendingLabel} />
@@ -55,7 +55,7 @@ export function Footer({ locale }: { locale: Locale }) {
 
         {/* Services Links */}
         <nav aria-label="Services Navigation">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-pine-800">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-sage-light">
             {dict.footer.servicesTitle}
           </h3>
           <ul className="mt-4 space-y-2.5">
@@ -63,7 +63,7 @@ export function Footer({ locale }: { locale: Locale }) {
               <li key={service.slug}>
                 <Link
                   href={`/${locale}/services#${service.slug}`}
-                  className="inline-flex items-center text-sm text-ink/70 transition-colors hover:text-pine-900 hover:underline hover:underline-offset-4"
+                  className="inline-flex items-center text-sm text-white/65 transition-colors hover:text-white"
                 >
                   {service.title}
                   <LinkPendingIndicator label={pendingLabel} />
@@ -76,16 +76,16 @@ export function Footer({ locale }: { locale: Locale }) {
         {/* Contact info & Opening Hours */}
         <div className="space-y-5">
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-pine-800">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-sage-light">
               {dict.footer.contactTitle}
             </h3>
-            <ul className="mt-4 space-y-3 text-sm text-ink/75">
+            <ul className="mt-4 space-y-3 text-sm text-white/65">
               <li className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-pine-700" aria-hidden="true" />
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-sage" aria-hidden="true" />
                 <div className="flex flex-col">
                   <a
                     href={`tel:${site.phoneDisplay.replace(/\s/g, "")}`}
-                    className="font-medium text-ink hover:text-pine-800 dir-ltr text-start"
+                    className="font-medium text-white hover:text-sage-light dir-ltr text-start"
                     dir="ltr"
                   >
                     {site.phoneDisplay}
@@ -93,7 +93,7 @@ export function Footer({ locale }: { locale: Locale }) {
                   {site.phoneSecondary && (
                     <a
                       href={`tel:${site.phoneSecondary.replace(/\s/g, "")}`}
-                      className="text-xs text-ink/60 hover:text-pine-800 dir-ltr text-start"
+                      className="text-xs text-white/55 hover:text-white dir-ltr text-start"
                       dir="ltr"
                     >
                       {site.phoneSecondary}
@@ -113,22 +113,22 @@ export function Footer({ locale }: { locale: Locale }) {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-pine-700" aria-hidden="true" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-sage" aria-hidden="true" />
                 <span className="leading-relaxed">{site.address[locale]}</span>
               </li>
             </ul>
           </div>
 
-          <div className="border-t border-pine-900/10 pt-4">
-            <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-pine-800">
+          <div className="border-t border-white/10 pt-4">
+            <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-sage-light">
               <Clock className="h-3.5 w-3.5" aria-hidden="true" />
               <span>{dict.footer.hoursTitle}</span>
             </h4>
-            <ul className="mt-2.5 space-y-1 text-sm text-ink/75">
+            <ul className="mt-2.5 space-y-1 text-sm text-white/65">
               {site.openingHours.map((row) => (
                 <li key={row.days.en} className="flex flex-wrap items-center justify-between gap-x-2 text-xs">
                   <span className="font-medium">{row.days[locale]}:</span>
-                  <span className="text-ink/65">{row.time[locale]}</span>
+                  <span className="text-white/55">{row.time[locale]}</span>
                 </li>
               ))}
             </ul>
@@ -137,10 +137,10 @@ export function Footer({ locale }: { locale: Locale }) {
       </div>
 
       {/* Legal & Medical Disclaimer Bar */}
-      <div className="border-t border-pine-900/10 bg-sand/60">
-        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-          <p className="text-xs leading-relaxed text-ink/55">{dict.footer.disclaimer}</p>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-ink/50">
+      <div className="border-t border-white/10 bg-black/10">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <p className="text-xs leading-relaxed text-white/45">{dict.footer.disclaimer}</p>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-white/40">
             <p>{dict.footer.rights(year)}</p>
             <p>{dict.footer.credits}</p>
           </div>

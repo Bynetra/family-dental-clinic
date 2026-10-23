@@ -1,58 +1,28 @@
-import {
-  Dumbbell,
-  Footprints,
-  HeartHandshake,
-  MessageSquareText,
-  Move,
-  UserCheck,
-  type LucideIcon,
-} from "lucide-react";
+import { Check } from "lucide-react";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 import { SectionHeading } from "@/components/common/SectionHeading";
-
-const icons: LucideIcon[] = [
-  UserCheck,
-  MessageSquareText,
-  Move,
-  Dumbbell,
-  HeartHandshake,
-  Footprints,
-];
 
 export function WhyChooseUs({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
 
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
-        <SectionHeading
-          eyebrow={dict.why.eyebrow}
-          title={dict.why.heading}
-          sub={dict.why.sub}
-        />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {dict.why.items.map((item, i) => {
-            const Icon = icons[i % icons.length];
-            return (
-              <div
-                key={item.title}
-                className="group flex gap-4 rounded-3xl border border-pine-900/10 bg-cream/70 p-6 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:border-pine-800/20 hover:bg-white hover:shadow-sm"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pine-800/10 text-pine-800 transition-colors group-hover:bg-pine-800 group-hover:text-white">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <SectionHeading eyebrow={dict.why.eyebrow} title={dict.why.heading} sub={dict.why.sub} align="start" className="max-w-3xl" />
+        <div className="mt-12 grid border-y border-pine-900/15 sm:grid-cols-2 lg:grid-cols-4">
+          {dict.why.items.map((item, index) => (
+            <article key={item.title} className="border-b border-pine-900/15 px-1 py-7 sm:px-6 sm:first:ps-0 lg:border-b-0 lg:border-s lg:first:border-s-0 lg:last:pe-0">
+              <div className="flex items-center justify-between">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-pine-100 text-pine-800">
+                  <Check className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <div>
-                  <h3 className="font-semibold text-ink group-hover:text-pine-900 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink/70">
-                    {item.desc}
-                  </p>
-                </div>
+                <span className="font-display text-sm text-pine-500">0{index + 1}</span>
               </div>
-            );
-          })}
+              <h3 className="mt-6 text-lg font-semibold text-ink">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-ink/65">{item.desc}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -22,12 +22,13 @@ export function pageMetadata(
       siteName: site.name,
       locale: locale === "ur" ? "ur_PK" : "en_PK",
       type: "website",
-      images: [{ url: `${site.url}/images/hero-illustration.svg`, width: 800, height: 640, alt: site.name }],
+      images: [{ url: `${site.url}/images/physiotherapy-session.webp`, width: 1122, height: 1402, alt: site.name }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
+      images: [`${site.url}/images/physiotherapy-session.webp`],
     },
   };
 }

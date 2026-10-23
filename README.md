@@ -1,103 +1,83 @@
-# Mian Channu Physio Rehab — Website
+# Dr Rana Shahid Physiotherapist — Website
 
-A bilingual (English / اردو) physiotherapy & rehabilitation website for
-**Mian Channu Physio Rehab**, Mian Channu, Punjab, Pakistan.
-Built with Next.js (App Router), TypeScript, Tailwind CSS and Lucide icons.
+A responsive bilingual (English / اردو) website for **Dr Rana Shahid**,
+Consultant Physiotherapist at Shifa Hospital, Mian Channu. Built with Next.js
+App Router, TypeScript, Tailwind CSS, and Lucide icons.
 
-**Primary conversion goal:** WhatsApp appointment inquiries.
+The primary conversion flow is a structured WhatsApp appointment request. The
+site never presents opening WhatsApp as an appointment confirmation.
 
----
-
-## Quick start
+## Local development
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000  (redirects to /en)
-npm run build      # production build
-npm run start      # serve production build
-npm run lint       # ESLint
-npm run typecheck  # tsc --noEmit
+npm run dev
+npm run typecheck
+npm run lint
+npm run build
 ```
 
-Deploy on **Vercel** (zero-config for Next.js) or any Node-compatible host.
+The root route redirects to `/en`. English and Urdu routes share the same
+components and typed content structure.
 
-## Configuration before launch ⚠️
+## Central business configuration
 
-All business details live in **one file**: `src/config/site.ts`
+Public business data lives in `src/config/site.ts`:
 
-| Setting             | What to do                                                        |
-| ------------------- | ----------------------------------------------------------------- |
-| `url`               | Replace with the final production domain (used in canonical/OG/sitemap). |
-| `whatsappNumber`    | **Digits only**, international format, no `+`/spaces (e.g. `923001234567`). Powers every WhatsApp button. |
-| `phoneDisplay`      | Same number, nicely formatted for display.                        |
-| `address`           | Verified street address (shown in footer/contact).                |
-| `googleMapsUrl`     | Google Maps share link; leave empty until the location is confirmed. |
-| `sessionLength`     | Adjust to match clinic policy.                                    |
-| `openingHours`      | Replace with verified timings.                                    |
+- Doctor and clinic names
+- Qualifications
+- Phone and WhatsApp number
+- Address and Google Maps directions
+- Opening hours
+- Google review count
+- Canonical site origin
 
-Additionally:
+Set `NEXT_PUBLIC_SITE_URL` to the confirmed production origin before launch.
+The fallback is intentionally `http://localhost:3000`; no unconfirmed public
+domain is embedded in metadata, sitemap, robots, or structured data.
 
-1. **Verified qualifications** for Ibrahim — add them to the profile section
-   (`src/lib/i18n/translations.ts` → `physio.fieldsNote` / about page) once confirmed.
-   Never publish unverified credentials, registration numbers or experience claims.
-2. **Structured data** (`src/components/common/JsonLd.tsx`) intentionally contains
-   only verified fields. Add `address`, `geo`, `openingHoursSpecification` after confirmation.
-3. Replace the original placeholder illustrations in `public/images/` with real,
-   licensed clinic photography (keep the same file names or update the components).
-4. Confirm the **service list** (`translations.ts` → `services.items`) — items are
-   presented as "intended scope" until verified.
+## Content and localization
 
-## Editing content
+All English and Urdu copy is in `src/lib/i18n/translations.ts`. The locale
+layout sets `lang`, text direction, and the Urdu font. The language switcher
+replaces only the locale segment, preserving the current route.
 
-All copy (both languages) is centralized in **`src/lib/i18n/translations.ts`**.
-English and Urdu share one typed shape — add a key to both objects.
+Routes:
 
-- English routes: `/en`, `/en/about`, `/en/services`, `/en/conditions`, `/en/contact`
-- Urdu routes: `/ur`, `/ur/about`, `/ur/services`, `/ur/conditions`, `/ur/contact`
-- `/` redirects to `/en`. Every page sets `lang` + `dir` and uses the
-  Noto Nastaliq Urdu font with RTL-aware Tailwind logical utilities.
+- `/en` and `/ur`
+- `/en/about` and `/ur/about`
+- `/en/services` and `/ur/services`
+- `/en/conditions` and `/ur/conditions`
+- `/en/contact` and `/ur/contact`
 
-## WhatsApp integration
+## WhatsApp appointment flow
 
-- Single source of truth: `site.whatsappNumber` → all links are
-  `https://wa.me/<number>?text=<url-encoded message>`.
-- Pre-filled messages adapt to the active language and include the service
-  name for service-specific buttons (`translations.ts` → `whatsapp`).
-- The contact form has **no backend**: it validates and hands off to WhatsApp.
-  It never claims to have "sent" anything.
+The contact form validates the visitor's name and phone number and lets them
+add a preferred date/time and concern. Submission creates a localized,
+URL-encoded WhatsApp message for `site.whatsappNumber`. No form data is stored
+by this website.
 
-## Structure
+## Owner confirmation before launch
 
-```
-src/
-  app/
-    [locale]/            localized routes (layout sets lang/dir, header/footer/floating WA)
-      page.tsx           home (hero, about, services, conditions, why, how, profile, FAQ, CTA)
-      about/  services/  conditions/  contact/
-    sitemap.ts robots.ts icon.svg not-found.tsx
-  components/  layout/ (Header, Footer, MobileMenu) · home/ · common/
-  config/site.ts         ← business details (edit before launch)
-  lib/i18n/              config.ts · translations.ts · getDictionary.ts
-  lib/seo.ts pageMetadata helper
-public/images/           original SVG artwork (replace with photography)
-```
+The current values follow the supplied Google Business profile and Urdu
+posters. Confirm these items with the owner before publishing:
 
-## Accessibility, SEO & performance notes
+1. Final production domain (`NEXT_PUBLIC_SITE_URL`).
+2. Exact styling/expansion of the `MPPTA` qualification.
+3. Whether `Shifa Hospital` is the preferred public clinic name.
+4. WhatsApp availability on `0315 2315145`.
+5. Daily hours: the site uses the supplied Google profile hours of 9 AM–4 PM.
+6. Exact service scope, especially pediatric and stroke rehabilitation.
+7. A licensed professional portrait, if the representative illustration is to
+   be replaced.
 
-- Semantic landmarks, skip link, visible focus rings, labelled form fields,
-  `aria-expanded` accordion, keyboard-friendly mobile menu.
-- Reduced-motion support (animations disabled via `prefers-reduced-motion`).
-- Per-page metadata, canonical + `hreflang` alternates, Open Graph, sitemap, robots.
-- Server Components by default; client JS only for the menu, FAQ and form.
-- No tracking, no backend, no secrets. Lighthouse scores should be verified
-  after deployment on the production domain.
+## Accessibility, SEO, and performance
 
-## Future expansion (intentionally not built yet)
+- Semantic page structure, skip link, keyboard-accessible navigation and FAQ
+- Visible focus states and reduced-motion support
+- Responsive LTR and RTL layouts
+- Localized titles, descriptions, canonical and `hreflang` URLs
+- MedicalClinic structured data using supplied details only
+- Optimized local SVG artwork and no unnecessary client-side JavaScript
 
-Online scheduling/calendar, admin dashboard, inquiry management, blog,
-per-service detail pages, analytics, reviews (only authentic ones),
-additional languages. The structure above is ready for all of these.
-
-## License / ownership
-
-© Mian Channu Physio Rehab. Code provided for the clinic's use.
+No deployment or publishing configuration is included in this local change.

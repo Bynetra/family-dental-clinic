@@ -40,7 +40,7 @@ export default function ErrorBoundary({
           Try again / دوبارہ کوشش کریں
         </button>
         <a
-          href={whatsappUrl("Hello Dr. Farhan, I encountered an issue on the clinic website.")}
+          href={whatsappUrl("Hello Dr Rana Shahid, I encountered an issue on the clinic website.")}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-[#1FA855] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#178f47]"

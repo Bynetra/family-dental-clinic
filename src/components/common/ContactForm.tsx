@@ -26,10 +26,15 @@ export function ContactForm({
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
+    const preferredTime = String(data.get("preferredTime") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
 
     if (!name || !phone) {
       setError(dict.formError);
+      return;
+    }
+    if (phone.replace(/\D/g, "").length < 7) {
+      setError(dict.formPhoneError);
       return;
     }
     setError("");
@@ -39,42 +44,49 @@ export function ContactForm({
         ? [
             `السلام علیکم، میرا نام ${name} ہے۔`,
             `میرا فون نمبر: ${phone}۔`,
+            preferredTime ? `میرا پسندیدہ وقت: ${preferredTime}۔` : "",
             message ? `مسئلہ / بیماری: ${message}` : "",
-            "میں فزیوتھریپی کی اپائنٹمنٹ کے بارے میں معلومات چاہتا/چاہتی ہوں۔",
+            "میں فزیوتھراپی اپائنٹمنٹ کی درخواست کرنا چاہتا/چاہتی ہوں۔ براہ کرم دستیابی کی تصدیق کر دیں۔",
           ]
             .filter(Boolean)
             .join("\n")
         : [
-            `Hello Dr. Farhan (${site.name}), my name is ${name}.`,
+            `Hello ${site.physiotherapist}, my name is ${name}.`,
             `My phone number is ${phone}.`,
+            preferredTime ? `My preferred appointment time is: ${preferredTime}.` : "",
             message ? `My condition / concern: ${message}` : "",
-            "I would like to inquire about booking a physiotherapy appointment.",
+            "I would like to request a physiotherapy appointment. Please confirm availability.",
           ]
             .filter(Boolean)
             .join("\n");
 
-    window.open(whatsappUrl(text), "_blank", "noopener,noreferrer");
+    const popup = window.open(whatsappUrl(text), "_blank");
+    if (!popup) {
+      setError(dict.popupError);
+      return;
+    }
+    popup.opener = null;
   }
 
   const inputClass =
-    "w-full rounded-xl border border-pine-900/20 bg-white px-4 py-3.5 text-base text-ink placeholder:text-ink/40 transition-colors focus:border-pine-700 focus:outline-none focus:ring-2 focus:ring-pine-700/20 focus-visible:ring-2 focus-visible:ring-pine-700 focus-visible:ring-offset-1";
+    "w-full rounded-xl border border-pine-900/15 bg-cream/60 px-4 py-3.5 text-base text-ink placeholder:text-ink/35 transition-colors hover:border-pine-900/25 focus:border-pine-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-pine-600/15 focus-visible:ring-2 focus-visible:ring-pine-600 focus-visible:ring-offset-1";
 
   return (
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-3xl border border-pine-900/10 bg-white p-7 sm:p-9 shadow-card"
+      className="rounded-4xl border border-pine-900/10 bg-white p-7 shadow-card sm:p-10 lg:p-12"
     >
       <div className="flex items-center gap-2">
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1FA855]/10 text-[#1FA855]">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-pine-100 text-pine-800">
           <Send className="h-4 w-4" aria-hidden="true" />
         </span>
-        <h2 className="font-display text-2xl font-semibold text-ink">
+        <h2 className="font-display text-3xl font-semibold text-ink">
           {dict.formTitle}
         </h2>
       </div>
 
-      <div className="mt-6 space-y-5">
+      <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="cf-name" className="mb-2 block text-sm font-semibold text-ink">
             {dict.formName}
@@ -104,7 +116,7 @@ export function ContactForm({
             type="tel"
             required
             className={`${inputClass} text-start`}
-            placeholder="0336-6945952"
+            placeholder={site.phoneDisplay}
             autoComplete="tel"
             dir="ltr"
             aria-invalid={Boolean(error)}
@@ -112,7 +124,20 @@ export function ContactForm({
           />
         </div>
 
-        <div>
+        <div className="sm:col-span-2">
+          <label htmlFor="cf-preferred-time" className="mb-2 block text-sm font-semibold text-ink">
+            {dict.formPreferredTime}
+          </label>
+          <input
+            id="cf-preferred-time"
+            name="preferredTime"
+            type="datetime-local"
+            className={`${inputClass} text-start`}
+            dir="ltr"
+          />
+        </div>
+
+        <div className="sm:col-span-2">
           <label htmlFor="cf-message" className="mb-2 block text-sm font-semibold text-ink">
             {dict.formMessage}
           </label>
@@ -138,7 +163,7 @@ export function ContactForm({
 
       <button
         type="submit"
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1FA855] px-6 py-4 text-base font-semibold text-white shadow-sm transition-all hover:bg-[#178f47] hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1FA855] focus-visible:ring-offset-2 active:scale-[0.99]"
+        className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1FA855] px-6 py-4 text-base font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#178f47] hover:shadow-card focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1FA855] focus-visible:ring-offset-2 active:scale-[0.99]"
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
         <span>{dict.formSubmit}</span>

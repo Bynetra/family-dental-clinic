@@ -2,10 +2,7 @@ import { site } from "@/config/site";
 import type { Locale } from "@/lib/i18n/config";
 
 /**
- * LocalBusiness structured data.
- * ⚠️ TODO(Owner): Only verified details are included. Add `address`,
- * `geo`, `openingHoursSpecification` and `sameAs` once confirmed —
- * never fabricate ratings, reviews or registration numbers.
+ * MedicalClinic structured data using only supplied business details.
  */
 export function JsonLd({ locale }: { locale: Locale }) {
   const data = {
@@ -13,14 +10,14 @@ export function JsonLd({ locale }: { locale: Locale }) {
     "@type": "MedicalClinic",
     additionalType: "https://schema.org/Physiotherapy",
     name: site.name,
-    image: `${site.url}/images/hero-illustration.svg`,
+    logo: `${site.url}/brand/rana-shahid-mark.svg`,
     url: `${site.url}/${locale}`,
-    telephone: site.phoneDisplay,
+    telephone: `+${site.whatsappNumber}`,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Medical Complex, Talamba Mian Channu Rd",
-      addressLocality: "Mian Channu",
-      postalCode: "58000",
+      streetAddress: site.streetAddress,
+      addressLocality: site.locality,
+      postalCode: site.postalCode,
       addressCountry: "PK",
     },
     openingHoursSpecification: [
@@ -33,8 +30,9 @@ export function JsonLd({ locale }: { locale: Locale }) {
           "Thursday",
           "Friday",
           "Saturday",
+          "Sunday",
         ],
-        opens: "10:00",
+        opens: "09:00",
         closes: "16:00",
       },
     ],

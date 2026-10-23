@@ -4,15 +4,15 @@ export default function RootNotFound() {
   return (
     <html lang="en">
       <head>
-        <title>404 - Page Not Found | Mian Channu Physio Rehab</title>
+        <title>404 - Page Not Found | Dr Rana Shahid Physiotherapist</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
         style={{
           margin: 0,
           padding: "40px 20px",
-          backgroundColor: "#FAF8F5",
-          color: "#1D2924",
+          backgroundColor: "#F8FBFB",
+          color: "#102A33",
           fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
           display: "flex",
           minHeight: "100vh",
@@ -24,8 +24,8 @@ export default function RootNotFound() {
         }}
       >
         <svg width="72" height="72" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-          <rect width="48" height="48" rx="12" fill="#0E4F4A" />
-          <path d="M10 30c6-12 22-12 28 0" stroke="#9DBBA6" strokeWidth="3" strokeLinecap="round" />
+          <rect width="48" height="48" rx="12" fill="#0B4655" />
+          <path d="M10 30c6-12 22-12 28 0" stroke="#75CBD5" strokeWidth="3" strokeLinecap="round" />
           <path
             d="M14 30h6l3-8 4 14 3-6h6"
             stroke="#ffffff"
@@ -34,10 +34,10 @@ export default function RootNotFound() {
             strokeLinejoin="round"
           />
         </svg>
-        <h1 style={{ fontSize: "64px", fontWeight: "700", color: "#0E4F4A", margin: "20px 0 0" }}>
+        <h1 style={{ fontSize: "64px", fontWeight: "700", color: "#0B4655", margin: "20px 0 0" }}>
           404
         </h1>
-        <h2 style={{ fontSize: "22px", fontWeight: "600", color: "#1D2924", margin: "10px 0" }}>
+        <h2 style={{ fontSize: "22px", fontWeight: "600", color: "#102A33", margin: "10px 0" }}>
           Page not found / صفحہ نہیں ملا
         </h2>
         <p
@@ -63,7 +63,7 @@ export default function RootNotFound() {
               alignItems: "center",
               gap: "8px",
               borderRadius: "9999px",
-              backgroundColor: "#0E4F4A",
+              backgroundColor: "#0B4655",
               color: "#ffffff",
               padding: "12px 24px",
               fontWeight: "600",
@@ -80,9 +80,9 @@ export default function RootNotFound() {
               alignItems: "center",
               gap: "8px",
               borderRadius: "9999px",
-              border: "1px solid rgba(14, 79, 74, 0.3)",
+              border: "1px solid rgba(11, 70, 85, 0.3)",
               backgroundColor: "#ffffff",
-              color: "#0E4F4A",
+              color: "#0B4655",
               padding: "12px 24px",
               fontWeight: "600",
               fontSize: "14px",

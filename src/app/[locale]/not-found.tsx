@@ -5,8 +5,8 @@ export default function NotFound() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center bg-cream px-6 py-16 text-center">
       <svg width="72" height="72" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect width="48" height="48" rx="12" fill="#0E4F4A" />
-        <path d="M10 30c6-12 22-12 28 0" stroke="#9DBBA6" strokeWidth="3" strokeLinecap="round" />
+        <rect width="48" height="48" rx="12" fill="#0B4655" />
+        <path d="M10 30c6-12 22-12 28 0" stroke="#75CBD5" strokeWidth="3" strokeLinecap="round" />
         <path d="M14 30h6l3-8 4 14 3-6h6" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
       <p className="mt-6 font-display text-7xl font-semibold text-pine-800">404</p>

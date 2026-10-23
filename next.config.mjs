@@ -1,5 +1,15 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+
+/**
+ * Keep development and production artifacts separate. Running `next build`
+ * while the local dev server is open can otherwise replace chunks that the
+ * dev process is still serving, causing missing-module and manifest errors.
+ *
+ * @param {string} phase
+ * @returns {import('next').NextConfig}
+ */
+const nextConfig = (phase) => ({
+  distDir: phase === PHASE_DEVELOPMENT_SERVER ? ".next-dev" : ".next",
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
@@ -45,6 +55,6 @@ const nextConfig = {
       },
     ];
   },
-};
+});
 
 export default nextConfig;

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BadgeCheck, Stethoscope } from "lucide-react";
+import { BadgeCheck, MapPin } from "lucide-react";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 import { WhatsAppButton } from "@/components/common/WhatsAppButton";
@@ -9,53 +9,38 @@ export function PhysiotherapistProfile({ locale }: { locale: Locale }) {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-5 lg:py-28">
-        <div className="lg:col-span-2">
-          <div className="relative mx-auto max-w-sm">
-            <div className="overflow-hidden rounded-4xl border border-pine-900/10 bg-cream p-2.5 shadow-card">
-              <div className="overflow-hidden rounded-[calc(2rem-2px)]">
-                <Image
-                  src="/images/physiotherapist-portrait.svg"
-                  alt={dict.physio.imageAlt}
-                  width={600}
-                  height={720}
-                  className="h-auto w-full object-cover transition-transform duration-500 hover:scale-102"
-                  priority
-                />
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div className="overflow-hidden rounded-4xl bg-pine-900 text-white shadow-float">
+          <div className="grid lg:grid-cols-[.72fr_1.28fr]">
+            <div className="hairline-grid flex min-h-[22rem] flex-col justify-between border-b border-white/10 p-7 sm:p-10 lg:border-b-0 lg:border-e">
+              <Image src="/brand/rana-shahid-mark-inverse.svg" alt="" width={72} height={72} className="h-16 w-16" aria-hidden="true" />
+              <div>
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-sage">{dict.physio.eyebrow}</p>
+                <p className="mt-4 font-display text-5xl font-semibold text-white/10 sm:text-7xl" aria-hidden="true">RS</p>
+                <p className="mt-3 text-xs leading-5 text-white/45">
+                  {locale === "ur" ? "یہ پروفائل علامتی ہے؛ ویب سائٹ پر کوئی غیر مصدقہ ذاتی تصویر استعمال نہیں کی گئی۔" : "Typographic profile—no unverified practitioner portrait is used on this website."}
+                </p>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className="lg:col-span-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-pine-800/15 bg-pine-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-pine-800">
-            <Stethoscope className="h-3.5 w-3.5 text-pine-700" aria-hidden="true" />
-            <span>{dict.physio.eyebrow}</span>
-          </div>
-
-          <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
-            {dict.physio.heading}
-          </h2>
-
-          <p className="mt-2 text-base font-semibold text-pine-800">
-            {dict.physio.title}
-          </p>
-
-          <p className="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-ink/75">
-            {dict.physio.bio}
-          </p>
-
-          <div className="mt-6 flex max-w-2xl items-start gap-3 rounded-2xl border border-pine-900/10 bg-cream/80 p-4 text-sm leading-relaxed text-ink/70">
-            <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
-            <p>{dict.physio.fieldsNote}</p>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <WhatsAppButton
-              label={dict.physio.cta}
-              message={dict.whatsapp.default}
-              variant="whatsapp"
-            />
+            <div className="p-7 sm:p-10 lg:p-14">
+              <h2 className="text-balance font-display text-4xl font-semibold sm:text-5xl">{dict.physio.heading}</h2>
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.12em] text-sage-light">{dict.physio.title}</p>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70">{dict.physio.bio}</p>
+              <div className="mt-7 grid gap-4 sm:grid-cols-2">
+                <div className="flex items-start gap-3 border-t border-white/15 pt-4 text-sm leading-6 text-white/65">
+                  <BadgeCheck className="mt-1 h-4 w-4 shrink-0 text-sage" aria-hidden="true" />
+                  <p>{dict.physio.fieldsNote}</p>
+                </div>
+                <div className="flex items-start gap-3 border-t border-white/15 pt-4 text-sm leading-6 text-white/65">
+                  <MapPin className="mt-1 h-4 w-4 shrink-0 text-sage" aria-hidden="true" />
+                  <p>{locale === "ur" ? "شفاء ہسپتال، تلمبہ روڈ، میاں چنوں" : "Shifa Hospital, Tulamba Road, Mian Channu"}</p>
+                </div>
+              </div>
+              <div className="mt-9">
+                <WhatsAppButton label={dict.physio.cta} message={dict.whatsapp.default} variant="whatsapp" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

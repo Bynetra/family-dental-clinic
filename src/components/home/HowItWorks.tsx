@@ -1,3 +1,4 @@
+import { ArrowDown } from "lucide-react";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import type { Locale } from "@/lib/i18n/config";
 import { SectionHeading } from "@/components/common/SectionHeading";
@@ -6,38 +7,22 @@ export function HowItWorks({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
 
   return (
-    <section className="bg-cream">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
+    <section className="bg-sand/55">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <SectionHeading eyebrow={dict.how.eyebrow} title={dict.how.heading} />
-
-        <ol className="relative mt-14 grid gap-6 md:grid-cols-3">
-          {dict.how.steps.map((step, i) => (
-            <li
-              key={step.title}
-              className="relative flex flex-col justify-between rounded-3xl border border-pine-900/10 bg-white p-7 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span
-                    aria-hidden="true"
-                    className="flex h-11 w-11 items-center justify-center rounded-2xl bg-pine-800 font-display text-lg font-semibold text-white shadow-2xs"
-                  >
-                    0{i + 1}
-                  </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-pine-700/80">
-                    {locale === "ur" ? `مرحلہ ${i + 1}` : `Phase 0${i + 1}`}
-                  </span>
-                </div>
-                <h3 className="mt-5 text-lg font-semibold text-ink">{step.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink/70">{step.desc}</p>
-              </div>
+        <ol className="mx-auto mt-14 max-w-5xl border-t border-pine-900/15">
+          {dict.how.steps.map((step, index) => (
+            <li key={step.title} className="grid gap-4 border-b border-pine-900/15 py-7 sm:grid-cols-[5rem_.65fr_1.35fr] sm:items-start sm:gap-8">
+              <span className="font-display text-2xl text-pine-500">0{index + 1}</span>
+              <h3 className="text-xl font-semibold text-ink">{step.title}</h3>
+              <p className="text-sm leading-7 text-ink/65">{step.desc}</p>
             </li>
           ))}
         </ol>
-
-        <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-ink/60">
-          {dict.how.note}
-        </p>
+        <div className="mx-auto mt-8 flex max-w-3xl items-start justify-center gap-3 text-center text-sm leading-6 text-ink/55">
+          <ArrowDown className="mt-1 h-4 w-4 shrink-0 text-pine-600" aria-hidden="true" />
+          <p>{dict.how.note}</p>
+        </div>
       </div>
     </section>
   );
