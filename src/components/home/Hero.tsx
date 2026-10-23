@@ -1,114 +1,196 @@
-import Image from "next/image";
-import { ArrowUpRight, Check, Clock3, MapPin, ShieldCheck, Star } from "lucide-react";
-import { site } from "@/config/site";
-import { getDictionary } from "@/lib/i18n/getDictionary";
-import type { Locale } from "@/lib/i18n/config";
-import { WhatsAppButton } from "@/components/common/WhatsAppButton";
-import { ButtonLink } from "@/components/common/ButtonLink";
+"use client";
 
-export function Hero({ locale }: { locale: Locale }) {
-  const dict = getDictionary(locale);
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Calendar, ArrowRight, Star, ShieldCheck, CheckCircle2 } from "lucide-react";
+import type { Locale } from "@/lib/i18n/config";
+
+export function Hero({
+  locale = "en",
+  kicker,
+  titlePart1,
+  titleHighlight,
+  titlePart2,
+  description,
+  bookButtonText,
+  servicesButtonText,
+}: {
+  locale?: Locale;
+  kicker?: string;
+  titlePart1?: string;
+  titleHighlight?: string;
+  titlePart2?: string;
+  description?: string;
+  bookButtonText?: string;
+  servicesButtonText?: string;
+}) {
+  const isUrdu = locale === "ur";
 
   return (
-    <section className="relative overflow-hidden bg-cream">
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-pine-900/10" />
-      <div aria-hidden="true" className="absolute -end-48 top-0 h-[36rem] w-[36rem] rounded-full bg-pine-100/60 blur-3xl" />
+    <section className="relative overflow-hidden bg-ivory pt-8 pb-20 sm:pt-14 sm:pb-28 lg:pt-20 lg:pb-36">
+      {/* Subtle radial ambient gradients */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-24 end-0 -z-10 h-[500px] w-[500px] rounded-full bg-mint-100/40 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 start-0 -z-10 h-[400px] w-[400px] rounded-full bg-teal-100/30 blur-3xl"
+      />
 
-      <div className="relative mx-auto grid min-w-0 max-w-7xl grid-cols-1 items-center gap-12 px-4 pb-12 pt-10 sm:px-6 sm:pt-14 lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:px-8 lg:pb-16 lg:pt-16">
-        <div className="min-w-0 animate-rise">
-          <div className="flex w-fit max-w-full items-center gap-2 border-s-2 border-pine-500 ps-3 text-xs font-semibold uppercase tracking-[0.17em] text-pine-800">
-            <ShieldCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
-            <span className="min-w-0 break-words leading-relaxed">{dict.hero.kicker}</span>
-          </div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+          {/* Left Column: Headline and CTAs (col-span-7) */}
+          <div className="lg:col-span-7">
+            {/* Kicker Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="inline-flex items-center gap-2 rounded-full border border-teal-900/15 bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-teal-800 shadow-xs backdrop-blur-sm"
+            >
+              <span className="h-2 w-2 rounded-full bg-mint-400 animate-pulse" aria-hidden="true" />
+              <span>{kicker || (isUrdu ? "فیملی ڈینٹل کیئر کلینک" : "Family Dental Clinic")}</span>
+            </motion.div>
 
-          <h1 className="text-balance mt-6 max-w-2xl break-words font-display text-[2.4rem] font-semibold leading-[1.08] tracking-[-0.025em] text-ink sm:text-6xl lg:text-[4.35rem]">
-            {dict.hero.heading}
-          </h1>
+            {/* Main Headline with Staggered Reveal */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="mt-6 font-display text-4xl font-800 tracking-tight text-teal-950 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.12]"
+            >
+              {titlePart1 || (isUrdu ? "خوبصورت مسکراہٹیں،" : "Healthy smiles.")}{" "}
+              <span className="text-teal-700 underline decoration-mint-400/50 decoration-wavy decoration-2 underline-offset-8">
+                {titleHighlight || (isUrdu ? "پرسکون نگہداشت۔" : "Personal care.")}
+              </span>{" "}
+              {titlePart2 || (isUrdu ? "ہر نسل کے لیے۔" : "For every generation.")}
+            </motion.h1>
 
-          <p className="mt-6 max-w-xl text-base leading-8 text-ink/70 sm:text-lg">
-            {dict.hero.sub}
-          </p>
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
+            >
+              {description ||
+                (isUrdu
+                  ? "جدید ڈیجیٹل آلات، مکمل جراثیم کشی اور بغیر درد کے علاج کے ساتھ پرائیویٹ ڈینٹسٹری کا بہترین تجربہ۔ بچوں سے لے کر بزرگوں تک، ہر مریض کا خصوصی خیال۔"
+                  : "Experience gentle, private dental care in a calm, modern setting. From routine preventive checkups to orthodontic clear aligners and smile restorations, we treat every patient like family.")}
+            </motion.p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <WhatsAppButton label={dict.hero.primaryCta} message={dict.whatsapp.default} variant="whatsapp" />
-            <ButtonLink href={`/${locale}/services`} variant="outline">
-              {dict.hero.secondaryCta}
-              <ArrowUpRight className="h-4 w-4 rtl:-rotate-90" aria-hidden="true" />
-            </ButtonLink>
-          </div>
+            {/* Dual CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              className="mt-9 flex flex-wrap items-center gap-4"
+            >
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-teal-800 px-7 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-teal-700 hover:shadow-lg focus-visible:ring-4 focus-visible:ring-mint-400"
+              >
+                <Calendar className="h-5 w-5" aria-hidden="true" />
+                <span>{bookButtonText || (isUrdu ? "وقت بک کریں" : "Book Appointment")}</span>
+              </Link>
 
-          <ul className="mt-9 grid max-w-xl gap-3 border-t border-pine-900/10 pt-6 sm:grid-cols-2">
-            {dict.hero.trust.map((item, index) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm font-medium leading-6 text-ink/75">
-                {index === 2 ? (
-                  <Star className="mt-1 h-4 w-4 shrink-0 fill-amber-400 text-amber-500" aria-hidden="true" />
-                ) : (
-                  <Check className="mt-1 h-4 w-4 shrink-0 text-pine-600" aria-hidden="true" />
-                )}
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+              <Link
+                href={`/${locale}/services`}
+                className="inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-teal-900/15 bg-white/90 px-7 py-3.5 text-base font-semibold text-teal-950 shadow-xs transition-all hover:bg-teal-50 hover:shadow-sm"
+              >
+                <span>{servicesButtonText || (isUrdu ? "ہماری سروسز" : "Our Services")}</span>
+                <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />
+              </Link>
+            </motion.div>
 
-        <div className="relative animate-rise lg:ps-6 [animation-delay:120ms]">
-          <div className="relative min-h-[29rem] overflow-hidden rounded-[1.75rem] bg-pine-900 shadow-float sm:min-h-[38rem]">
-            <Image
-              src="/images/physiotherapy-session.webp"
-              alt={dict.hero.imageAlt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 46vw, 100vw"
-              className="object-cover object-center"
-            />
-            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-pine-950/65 via-transparent to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
-              <div>
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-sage-light">
-                  {locale === "ur" ? "نمائندہ کلینیکل منظر" : "Representative clinical scene"}
-                </p>
-                <p className="mt-1 max-w-xs text-sm leading-6 text-white/75">
-                  {locale === "ur" ? "معائنے اور اہداف کے مطابق بحالی" : "Rehabilitation shaped around assessment and goals"}
-                </p>
-              </div>
-              <span className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur sm:flex">
-                <ArrowUpRight className="h-5 w-5 rtl:-rotate-90" aria-hidden="true" />
+            {/* Trust highlights under buttons */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="mt-9 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-medium text-teal-950/80"
+            >
+              <span className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-teal-600" aria-hidden="true" />
+                <span>{isUrdu ? "درد سے پاک ٹیکنالوجی" : "Painless modern techniques"}</span>
               </span>
-            </div>
+              <span className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-teal-600" aria-hidden="true" />
+                <span>{isUrdu ? "مکمل جراثیم کشی" : "100% Sterilized tools"}</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-teal-600" aria-hidden="true" />
+                <span>{isUrdu ? "شفاف فیس، کوئی پوشیدہ چارجز نہیں" : "Clear, transparent fees"}</span>
+              </span>
+            </motion.div>
           </div>
-          <div aria-hidden="true" className="absolute -bottom-5 -start-1 h-24 w-24 rounded-bl-[2rem] border-b border-s border-pine-400/60" />
-        </div>
-      </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
-        <div className="grid border-y border-pine-900/10 bg-white/55 sm:grid-cols-3">
-          <a href={`tel:${site.phoneDisplay.replace(/\s/g, "")}`} className="group flex gap-3 px-4 py-5 transition-colors hover:bg-white sm:px-6">
-            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-pine-100 text-pine-800">
-              <Check className="h-4 w-4" aria-hidden="true" />
-            </span>
-            <span>
-              <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-ink/45">{locale === "ur" ? "فون اور واٹس ایپ" : "Phone & WhatsApp"}</span>
-              <span className="mt-1 block font-semibold text-ink" dir="ltr">{site.phoneDisplay}</span>
-            </span>
-          </a>
-          <div className="flex gap-3 border-t border-pine-900/10 px-4 py-5 sm:border-s sm:border-t-0 sm:px-6">
-            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-pine-100 text-pine-800">
-              <Clock3 className="h-4 w-4" aria-hidden="true" />
-            </span>
-            <span>
-              <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-ink/45">{locale === "ur" ? "اوقاتِ کار" : "Opening hours"}</span>
-              <span className="mt-1 block font-semibold text-ink">{site.openingHours[0].days[locale]} · {site.openingHours[0].time[locale]}</span>
-            </span>
+          {/* Right Column: Hero Image with Floating Stat Cards (col-span-5) */}
+          <div className="relative mt-8 lg:col-span-5 lg:mt-0">
+            {/* Main Rounded Image Frame */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl sm:rounded-4xl border-2 border-teal-900/10 shadow-card"
+            >
+              <Image
+                src="/images/hero-patient-smile.jpg"
+                alt="Smiling patient in modern dental clinic chair"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-950/40 via-transparent to-transparent" />
+            </motion.div>
+
+            {/* Floating Stat Card 1: Rating (Top End) */}
+            <motion.div
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="absolute -top-3 end-2 sm:-top-4 sm:-end-6 rounded-2xl border border-white/60 bg-white/95 p-3.5 sm:p-4 shadow-card-hover backdrop-blur-md"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 text-gold-600">
+                  <Star className="h-5 w-5 fill-gold text-gold" aria-hidden="true" />
+                </div>
+                <div>
+                  <div className="font-display text-sm sm:text-base font-800 text-teal-950">
+                    4.9 / 5.0 Rating
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-muted">
+                    {isUrdu ? "مریضوں کا مکمل اعتماد" : "500+ Verified Patient Reviews"}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Floating Stat Card 2: 5000+ Happy Patients (Bottom Start) */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.6 }}
+              className="absolute -bottom-4 start-2 sm:-bottom-6 sm:-start-6 rounded-2xl border border-white/60 bg-white/95 p-3.5 sm:p-5 shadow-card-hover backdrop-blur-md"
+            >
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-mint-50 text-teal-800 border border-mint-200">
+                  <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-mint-600" aria-hidden="true" />
+                </div>
+                <div>
+                  <div className="font-display text-lg sm:text-xl font-800 text-teal-950">
+                    5,000+
+                  </div>
+                  <p className="text-[11px] sm:text-xs font-medium text-muted">
+                    {isUrdu ? "خوش اور مطمئن مسکراہٹیں" : "Happy Patient Smiles"}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
-          <a href={site.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="group flex gap-3 border-t border-pine-900/10 px-4 py-5 transition-colors hover:bg-white sm:border-s sm:border-t-0 sm:px-6">
-            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-pine-100 text-pine-800">
-              <MapPin className="h-4 w-4" aria-hidden="true" />
-            </span>
-            <span>
-              <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-ink/45">{locale === "ur" ? "کلینک" : "Clinic"}</span>
-              <span className="mt-1 block text-sm font-semibold leading-6 text-ink group-hover:text-pine-700">{locale === "ur" ? "شفاء ہسپتال، تلمبہ روڈ" : "Shifa Hospital, Tulamba Road"}</span>
-            </span>
-          </a>
         </div>
       </div>
     </section>

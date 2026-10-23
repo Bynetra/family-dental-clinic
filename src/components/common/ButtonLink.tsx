@@ -1,17 +1,32 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { LinkPendingIndicator } from "@/components/common/LinkPendingIndicator";
 
-type Variant = "primary" | "outline" | "light";
+type Variant = "primary" | "outline" | "ghost" | "teal";
 
-const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-700 focus-visible:ring-offset-2 active:scale-[0.98]";
+interface ButtonLinkProps {
+  href: string;
+  children: React.ReactNode;
+  variant?: Variant;
+  className?: string;
+  external?: boolean;
+  size?: "sm" | "md" | "lg";
+}
 
-const variants: Record<Variant, string> = {
-  primary: "bg-pine-800 text-white hover:bg-pine-700",
+const variantClasses: Record<Variant, string> = {
+  primary:
+    "bg-teal-800 text-white shadow-sm hover:bg-teal-700 focus-visible:ring-teal-600",
+  teal:
+    "bg-teal-600 text-white shadow-sm hover:bg-teal-700 focus-visible:ring-teal-500",
   outline:
-    "border border-pine-800/30 bg-white/60 text-pine-800 hover:border-pine-800/60 hover:bg-white",
-  light: "bg-white text-pine-800 hover:bg-pine-50",
+    "border border-teal-800/30 bg-white text-teal-800 hover:bg-teal-50 hover:border-teal-800/50 focus-visible:ring-teal-600",
+  ghost:
+    "text-teal-800 hover:bg-teal-50 focus-visible:ring-teal-600",
+};
+
+const sizeClasses = {
+  sm: "px-4 py-2 text-sm min-h-[36px]",
+  md: "px-5 py-2.5 text-sm min-h-[44px]",
+  lg: "px-7 py-3.5 text-base min-h-[52px]",
 };
 
 export function ButtonLink({
@@ -19,16 +34,31 @@ export function ButtonLink({
   children,
   variant = "primary",
   className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: Variant;
-  className?: string;
-}) {
+  external = false,
+  size = "md",
+}: ButtonLinkProps) {
+  const base =
+    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-150 focus-visible:ring-2 focus-visible:ring-offset-2";
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(base, variantClasses[variant], sizeClasses[size], className)}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <Link href={href} className={cn(base, variants[variant], className)}>
+    <Link
+      href={href}
+      className={cn(base, variantClasses[variant], sizeClasses[size], className)}
+    >
       {children}
-      <LinkPendingIndicator label="Loading page / صفحہ لوڈ ہو رہا ہے" />
     </Link>
   );
 }

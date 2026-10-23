@@ -3,9 +3,9 @@ export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "en";
 
-export const localeNames: Record<Locale, string> = {
-  en: "English",
-  ur: "اردو",
+export const localeNames: Record<Locale, { label: string; nativeName: string }> = {
+  en: { label: "English", nativeName: "English" },
+  ur: { label: "Urdu",    nativeName: "اردو" },
 };
 
 export function isLocale(value: string | undefined | null): value is Locale {

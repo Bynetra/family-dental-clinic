@@ -2,23 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { LinkPendingIndicator } from "@/components/common/LinkPendingIndicator";
-import type { Locale } from "@/lib/i18n/config";
-import type { NavItem } from "./MobileMenu";
+import type { NavItem } from "./Header";
 
-export function DesktopNav({
-  navItems,
-  locale,
-}: {
-  navItems: NavItem[];
-  locale: Locale;
-}) {
+export function DesktopNav({ navItems }: { navItems: NavItem[] }) {
   const pathname = usePathname();
-  const pendingLabel = locale === "ur" ? "صفحہ لوڈ ہو رہا ہے" : "Loading page";
 
   return (
-    <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
+    <nav
+      aria-label="Main navigation"
+      className="hidden lg:flex items-center gap-1 rounded-full border border-teal-900/10 bg-white/75 p-1.5 shadow-xs backdrop-blur-md"
+    >
       {navItems.map((item) => {
         const isActive = item.exact
           ? pathname === item.href
@@ -30,18 +25,31 @@ export function DesktopNav({
             href={item.href}
             aria-current={isActive ? "page" : undefined}
             className={cn(
-              "relative inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[15px] font-medium transition-colors duration-150",
+              "relative rounded-full px-4 py-2 text-[13.5px] font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700",
               isActive
-                ? "bg-pine-800/10 font-semibold text-pine-900"
-                : "text-ink/75 hover:bg-pine-900/5 hover:text-pine-800"
+                ? "text-white"
+                : "text-ink/75 hover:text-teal-900 hover:bg-teal-800/5",
             )}
           >
-            {item.label}
-            <LinkPendingIndicator label={pendingLabel} />
+            {isActive && (
+              <motion.span
+                layoutId="desktop-nav-active-pill"
+                className="absolute inset-0 rounded-full bg-teal-800 shadow-sm"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+            <span className="relative z-10 flex items-center gap-1.5">
+              {isActive && (
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-mint-300"
+                  aria-hidden="true"
+                />
+              )}
+              <span>{item.label}</span>
+            </span>
           </Link>
         );
       })}
     </nav>
   );
 }
-

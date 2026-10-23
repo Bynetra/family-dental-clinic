@@ -5,34 +5,91 @@ export default {
   theme: {
     extend: {
       colors: {
-        pine: {
-          50: "#EFF8F6",
-          100: "#D9EEE9",
-          200: "#AFDDD4",
-          300: "#7BC6BA",
-          400: "#43A798",
-          500: "#278A7C",
-          600: "#1B6E63",
-          700: "#17584F",
-          800: "#14473F",
-          900: "#0D3631",
-          950: "#06231F",
+        /** High-end private dental clinic primary teal */
+        primary: {
+          DEFAULT: "#0F3D44",
+          50:  "#EEF7F5",
+          100: "#D6EEE9",
+          200: "#AEDCD3",
+          300: "#7EC4B8",
+          400: "#4DA99B",
+          500: "#2B8C7E",
+          600: "#1A6F63",
+          700: "#13554C",
+          800: "#0F3D44", // User-specified primary teal
+          900: "#0A292E",
+          950: "#06181B",
         },
-        sage: { light: "#D8F2EC", DEFAULT: "#70C5B7", dark: "#287F72" },
-        cream: "#F8F8F3",
-        sand: "#EEEFE7",
-        ink: "#152825",
+        /** Primary teal alias for backwards compatibility */
+        teal: {
+          50:  "#EEF7F5",
+          100: "#D6EEE9",
+          200: "#AEDCD3",
+          300: "#7EC4B8",
+          400: "#4DA99B",
+          500: "#2B8C7E",
+          600: "#1A6F63",
+          700: "#13554C",
+          800: "#0F3D44", // User-specified primary teal
+          900: "#0A292E",
+          950: "#06181B",
+        },
+        /** Fresh mint accent */
+        mint: {
+          DEFAULT: "#4FD1B8",
+          50:  "#F0FBF9",
+          100: "#D8F6F0",
+          200: "#B4ECE2",
+          300: "#86E1D1",
+          400: "#4FD1B8", // User-specified accent mint
+          500: "#2EB99F",
+          600: "#22947F",
+          700: "#1D7566",
+          800: "#195D52",
+          900: "#174D44",
+        },
+        /** Soft gold for high-end subtle highlights */
+        gold: {
+          DEFAULT: "#C9A45C",
+          50:  "#FAF6ED",
+          100: "#F4EBD7",
+          200: "#E8D5AE",
+          300: "#DCBE84",
+          400: "#C9A45C", // User-specified soft gold
+          500: "#B28C45",
+          600: "#8F6E34",
+          700: "#6B5226",
+          800: "#47361A",
+          900: "#241B0D",
+        },
+        /** Warm off-white background */
+        ivory: "#FAF8F3",
+        /** Soft aqua background tint */
+        aqua: "#EEF7F4",
+        /** Muted seafoam */
+        seafoam: "#DCEEE8",
+        /** Charcoal text */
+        ink: "#1A2E33",
+        /** Muted text */
+        muted: "#4A6166",
       },
       fontFamily: {
-        body: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
+        sans:    ["var(--font-inter)", "var(--font-noto-urdu)", "system-ui", "sans-serif"],
+        display: ["var(--font-plus-jakarta)", "var(--font-noto-urdu)", "Georgia", "serif"],
+        urdu:    ["var(--font-noto-urdu)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        card: "0 1px 2px rgb(13 54 49 / 0.04), 0 18px 50px -28px rgb(13 54 49 / 0.28)",
-        float: "0 24px 70px -32px rgb(6 35 31 / 0.42)",
+        card:         "0 2px 6px -1px rgb(15 61 68 / 0.06), 0 12px 32px -4px rgb(15 61 68 / 0.08)",
+        "card-hover": "0 12px 32px -4px rgb(15 61 68 / 0.16), 0 4px 12px -2px rgb(15 61 68 / 0.08)",
+        glass:        "0 8px 32px -8px rgb(15 61 68 / 0.14), inset 0 1px 0 rgb(255 255 255 / 0.6)",
+        nav:          "0 1px 0 rgb(15 61 68 / 0.08), 0 4px 20px -6px rgb(15 61 68 / 0.1)",
+        gold:         "0 4px 20px -4px rgb(201 164 92 / 0.35)",
       },
-      borderRadius: { "4xl": "1.5rem" },
+      borderRadius: {
+        "3xl": "1.5rem",
+        "4xl": "2rem",
+        "5xl": "2.5rem",
+      },
     },
   },
-  plugins: [],
 } satisfies Config;

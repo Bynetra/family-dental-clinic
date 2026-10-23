@@ -6,58 +6,51 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
-    max-width: 100vw;
-    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   body {
-    @apply bg-cream font-body text-ink antialiased selection:bg-pine-200 selection:text-pine-950;
-    background-image: radial-gradient(circle at 15% -10%, rgb(112 197 183 / 0.12), transparent 32rem);
-    max-width: 100vw;
-    overflow-x: clip;
-  }
-
-  ::selection {
-    background: rgb(112 197 183 / 0.34);
+    @apply bg-ivory font-sans text-ink antialiased selection:bg-mint-200 selection:text-teal-950;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-pine-600 ring-offset-2 ring-offset-cream;
+    @apply outline-none ring-2 ring-teal-600 ring-offset-2 ring-offset-ivory;
   }
 
-  /* Urdu (Nastaliq) typography: generous line-height is required for legibility. */
+  h1, h2, h3 {
+    @apply font-display tracking-tight text-teal-950;
+  }
+
+  /**
+   * Urdu Nastaliq typography requirements:
+   * Noto Nastaliq Urdu glyphs require generous line-height (~1.9 to 2.1)
+   * to prevent ascenders and descenders from clipping.
+   */
   html[lang="ur"] body,
-  [dir="rtl"] {
-    font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
-    line-height: 2.15;
+  html[lang="ur"] {
+    font-family: var(--font-noto-urdu), system-ui, sans-serif;
   }
 
+  html[lang="ur"] p,
   html[lang="ur"] h1,
   html[lang="ur"] h2,
   html[lang="ur"] h3,
-  [dir="rtl"] h1,
-  [dir="rtl"] h2,
-  [dir="rtl"] h3 {
-    font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
-    line-height: 1.85;
-  }
-
-  html[lang="ur"] .font-display,
-  [dir="rtl"] .font-display {
-    font-family: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
-    line-height: 1.8;
-  }
-
-  .route-loading-copy--ur {
-    display: none;
-  }
-
-  html[lang="ur"] .route-loading-copy--en {
-    display: none;
-  }
-
-  html[lang="ur"] .route-loading-copy--ur {
-    display: inline;
+  html[lang="ur"] h4,
+  html[lang="ur"] span,
+  html[lang="ur"] a,
+  html[lang="ur"] button,
+  html[lang="ur"] label,
+  html[lang="ur"] input,
+  html[lang="ur"] select,
+  html[lang="ur"] textarea,
+  html[lang="ur"] li {
+    line-height: 2.05;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -75,80 +68,28 @@
 }
 
 @layer utilities {
-  .eyebrow {
-    @apply text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-pine-700;
+  /** Frosted glass utility */
+  .glass {
+    background: rgba(250, 248, 243, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(15, 61, 68, 0.08);
   }
 
+  .glass-dark {
+    background: rgba(10, 41, 46, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /** Subtle dark background pattern */
   .hairline-grid {
-    background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
-    background-size: 44px 44px;
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .animate-rise {
-    animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  .route-progress__bar {
-    animation: route-progress-ltr 1.05s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    will-change: transform;
-  }
-
-  html[dir="rtl"] .route-progress__bar {
-    animation-name: route-progress-rtl;
-  }
-
-  @keyframes route-progress-ltr {
-    from {
-      transform: translateX(-110%);
-    }
-    to {
-      transform: translateX(310%);
-    }
-  }
-
-  @keyframes route-progress-rtl {
-    from {
-      transform: translateX(110%);
-    }
-    to {
-      transform: translateX(-310%);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .route-progress__bar {
-      width: 100%;
-      animation: none !important;
-      transform: none;
-      opacity: 0.8;
-    }
-  }
-
-  /* Isolate phone numbers, codes, and English acronyms inside RTL text */
-  .isolate-bidi {
-    unicode-bidi: isolate;
-  }
-
-  .ltr-text {
-    direction: ltr;
-    unicode-bidi: isolate;
-    text-align: left;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }

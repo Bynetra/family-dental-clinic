@@ -1,6 +1,6 @@
-import { isLocale } from "./config";
 import { dictionaries, type Dictionary } from "./translations";
+import { defaultLocale, type Locale } from "./config";
 
-export function getDictionary(locale: string): Dictionary {
-  return isLocale(locale) ? dictionaries[locale] : dictionaries.en;
+export function getDictionary(locale: Locale): Dictionary {
+  return dictionaries[locale] || dictionaries[defaultLocale];
 }

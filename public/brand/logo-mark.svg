@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+  <rect width="64" height="64" rx="14" fill="#123E43"/>
+  <!-- Tooth -->
+  <path d="M22 16 C16 16 12 21 12 27 C12 33 14 40 17 46 C19 51 22 54 24 54 C26 54 27 52 28 49 C29 46 30 44 32 44 C34 44 35 46 36 49 C37 52 38 54 40 54 C42 54 45 51 47 46 C50 40 52 33 52 27 C52 21 48 16 42 16 C38 16 36 18 32 18 C28 18 26 16 22 16Z" fill="#EEF7F4"/>
+  <!-- Smile arc -->
+  <path d="M22 31 Q32 39 42 31" stroke="#123E43" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+</svg>
+

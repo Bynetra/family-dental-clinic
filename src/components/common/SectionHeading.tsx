@@ -1,27 +1,37 @@
 import { cn } from "@/lib/utils";
 
+interface SectionHeadingProps {
+  eyebrow?: string;
+  heading: string;
+  sub?: string;
+  align?: "left" | "center";
+  className?: string;
+  headingClassName?: string;
+  light?: boolean;
+}
+
 export function SectionHeading({
   eyebrow,
-  title,
+  heading,
   sub,
   align = "center",
-  dark = false,
   className,
-}: {
-  eyebrow?: string;
-  title: string;
-  sub?: string;
-  align?: "center" | "start";
-  dark?: boolean;
-  className?: string;
-}) {
+  headingClassName,
+  light = false,
+}: SectionHeadingProps) {
   return (
-    <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
+    <div
+      className={cn(
+        "max-w-2xl",
+        align === "center" && "mx-auto text-center",
+        className,
+      )}
+    >
       {eyebrow && (
         <p
           className={cn(
             "mb-3 text-xs font-semibold uppercase tracking-[0.2em]",
-            dark ? "text-sage-light/90" : "text-pine-700"
+            light ? "text-teal-300" : "text-teal-600",
           )}
         >
           {eyebrow}
@@ -29,17 +39,19 @@ export function SectionHeading({
       )}
       <h2
         className={cn(
-          "font-display text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight break-words",
-          dark ? "text-white" : "text-ink"
+          "font-display text-3xl font-700 leading-[1.2] tracking-tight sm:text-4xl",
+          light ? "text-white" : "text-ink",
+          headingClassName,
         )}
+        style={{ fontWeight: 700 }}
       >
-        {title}
+        {heading}
       </h2>
       {sub && (
         <p
           className={cn(
-            "mt-4 text-base sm:text-lg leading-relaxed",
-            dark ? "text-white/80" : "text-ink/70"
+            "mt-4 text-base leading-relaxed sm:text-lg",
+            light ? "text-teal-200/80" : "text-muted",
           )}
         >
           {sub}

@@ -1,53 +1,145 @@
-import { MessageCircle } from "lucide-react";
-import { getDictionary } from "@/lib/i18n/getDictionary";
+"use client";
+
+import { useEffect, useState, useRef, useCallback } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Calendar } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
-import { whatsappUrl } from "@/lib/whatsapp";
 import { Logo } from "@/components/common/Logo";
-import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
 import { DesktopNav } from "@/components/layout/DesktopNav";
-import { MobileMenu, type NavItem } from "@/components/layout/MobileMenu";
+import { MobileMenu } from "@/components/layout/MobileMenu";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { cn } from "@/lib/utils";
+
+export type NavItem = { href: string; label: string; exact?: boolean };
 
 export function Header({ locale }: { locale: Locale }) {
-  const dict = getDictionary(locale);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const scrolledRef = useRef(false);
+  const pathname = usePathname();
+  const isUrdu = locale === "ur";
+
+  // Scroll listener with hysteresis to prevent oscillation / flickering
+  useEffect(() => {
+    let ticking = false;
+
+    function updateScroll() {
+      const y = window.scrollY;
+      const wasScrolled = scrolledRef.current;
+
+      // Hysteresis thresholds:
+      // Activate at > 28px, deactivate at < 10px
+      let nextScrolled = wasScrolled;
+      if (!wasScrolled && y > 28) {
+        nextScrolled = true;
+      } else if (wasScrolled && y < 10) {
+        nextScrolled = false;
+      }
+
+      if (nextScrolled !== wasScrolled) {
+        scrolledRef.current = nextScrolled;
+        setScrolled(nextScrolled);
+      }
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    }
+
+    // Initial check on mount
+    updateScroll();
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const prevPathRef = useRef(pathname);
+
+  // Close mobile drawer whenever route changes
+  useEffect(() => {
+    if (prevPathRef.current !== pathname) {
+      prevPathRef.current = pathname;
+      setMobileOpen(false);
+    }
+  }, [pathname]);
+
+  const handleToggle = useCallback(() => {
+    setMobileOpen((prev) => !prev);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setMobileOpen(false);
+  }, []);
+
   const navItems: NavItem[] = [
-    { href: `/${locale}`, label: dict.nav.home, exact: true },
-    { href: `/${locale}/about`, label: dict.nav.about },
-    { href: `/${locale}/services`, label: dict.nav.services },
-    { href: `/${locale}/conditions`, label: dict.nav.conditions },
-    { href: `/${locale}/contact`, label: dict.nav.contact },
+    { href: `/${locale}`,          label: isUrdu ? "ہوم" : "Home",        exact: true },
+    { href: `/${locale}/services`,  label: isUrdu ? "سروسز" : "Services" },
+    { href: `/${locale}/about`,     label: isUrdu ? "تعارف" : "About Us" },
+    { href: `/${locale}/team`,      label: isUrdu ? "ہماری ٹیم" : "Our Team" },
+    { href: `/${locale}/contact`,   label: isUrdu ? "رابطہ کریں" : "Visit Us" },
   ];
-  const bookHref = whatsappUrl(dict.whatsapp.default);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-pine-900/10 bg-cream/90 backdrop-blur-xl">
-      <div className="relative mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Logo locale={locale} />
-
-        <DesktopNav navItems={navItems} locale={locale} />
-
-        <div className="flex items-center gap-2.5 sm:gap-3">
-          <div className="hidden sm:block lg:hidden xl:block">
-            <LanguageSwitcher locale={locale} />
+    <>
+      {/*
+        Fixed-height outer spacer (h-20 / 80px)
+        Ensures the document flow height never shifts on scroll (CLS = 0).
+      */}
+      <header
+        className={cn(
+          "sticky top-0 z-50 h-20 w-full transition-[background-color,box-shadow,border-color] duration-200",
+          scrolled
+            ? "border-b border-teal-900/10 bg-[#FAF8F3]/95 shadow-nav backdrop-blur-md"
+            : "border-b border-transparent bg-[#FAF8F3]/80 backdrop-blur-sm",
+        )}
+      >
+        <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+          {/* Logo — scale slightly via transform on scroll without layout shift */}
+          <div
+            className={cn(
+              "shrink-0 transition-transform duration-200 origin-start",
+              scrolled ? "scale-95" : "scale-100",
+            )}
+          >
+            <Logo locale={locale} />
           </div>
 
-          <a
-            href={bookHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden min-h-[44px] items-center gap-2 rounded-full bg-pine-900 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:bg-pine-800 hover:shadow-card focus-visible:ring-2 focus-visible:ring-pine-600 focus-visible:ring-offset-2 lg:inline-flex"
-          >
-            <MessageCircle className="h-4 w-4 text-[#25D366]" aria-hidden="true" />
-            <span>{dict.nav.book}</span>
-          </a>
+          {/* Desktop Center Navigation */}
+          <DesktopNav navItems={navItems} />
 
-          <MobileMenu
-            locale={locale}
-            navItems={navItems}
-            bookLabel={dict.nav.book}
-            bookHref={bookHref}
-          />
+          {/* Right Action Group: Language Switcher + Book CTA + Mobile Toggle */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            {/* Language Switcher — desktop & tablet */}
+            <div className="hidden sm:block">
+              <LanguageSwitcher currentLocale={locale} />
+            </div>
+
+            {/* Book Appointment CTA Button — desktop */}
+            <Link
+              href={`/${locale}/contact`}
+              className="hidden md:inline-flex items-center gap-2 rounded-full bg-teal-800 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-teal-700 hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"
+            >
+              <Calendar className="h-4 w-4 text-mint-300" aria-hidden="true" />
+              <span>{isUrdu ? "وقت حاصل کریں" : "Book Visit"}</span>
+            </Link>
+
+            {/* Mobile Hamburger / Close Button + Drawer */}
+            <MobileMenu
+              locale={locale}
+              navItems={navItems}
+              open={mobileOpen}
+              onToggle={handleToggle}
+              onClose={handleClose}
+            />
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }

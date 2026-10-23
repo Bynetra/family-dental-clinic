@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "siteName": "Family Dental Clinic",
+    "home": {
+      "title": "Family Dental Clinic — Premium, Gentle Dental Care for All Ages",
+      "description": "Experience modern, anxiety-free private dentistry. From routine checkups to clear aligners and smile restorations, we provide compassionate care for your family."
+    },
+    "services": {
+      "title": "Comprehensive Dental Services — Family Dental Clinic",
+      "description": "Explore our advanced dental treatments including preventive hygiene, clear aligners, teeth whitening, pediatric care, and restorative dentistry."
+    },
+    "about": {
+      "title": "About Our Clinic — Family Dental Clinic",
+      "description": "Learn about our patient-first approach, hospital-grade sterilization standards, and modern digital dentistry equipment."
+    },
+    "team": {
+      "title": "Our Specialists & Dentists — Family Dental Clinic",
+      "description": "Meet our compassionate, highly experienced dental clinicians and specialists committed to your oral health."
+    },
+    "contact": {
+      "title": "Book an Appointment & Visit Us — Family Dental Clinic",
+      "description": "Schedule your dental consultation online or visit our clinic. Convenient hours and emergency appointments available."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "team": "Our Team",
+    "contact": "Visit Us",
+    "book": "Book Visit"
+  },
+  "hero": {
+    "kicker": "Family Dental Clinic",
+    "titlePart1": "Healthy smiles.",
+    "titleHighlight": "Personal care.",
+    "titlePart2": "For every generation.",
+    "description": "Experience gentle, private dental care in a calm, modern setting. From routine preventive checkups to orthodontic clear aligners and complete smile restorations, we treat every patient like family.",
+    "bookButton": "Book Appointment",
+    "servicesButton": "Our Services"
+  },
+  "trustBar": {
+    "modernEquipment": {
+      "title": "Modern Equipment",
+      "description": "Low-radiation 3D imaging & digital scanners"
+    },
+    "sterilization": {
+      "title": "Hospital-Grade Sterilization",
+      "description": "Autoclave sterilized tools for every patient"
+    },
+    "painless": {
+      "title": "Gentle, Painless Care",
+      "description": "Compassionate techniques for anxiety-free visits"
+    },
+    "family": {
+      "title": "Family Friendly",
+      "description": "Warm, welcoming care from toddlers to grandparents"
+    }
+  },
+  "services": {
+    "title": "Specialized treatments for your whole family",
+    "subtitle": "From preventive care to advanced restorative and cosmetic solutions, every treatment is tailored to your comfort.",
+    "viewAll": "Explore All Dental Treatments",
+    "items": [
+      {
+        "slug": "routine-checkups",
+        "title": "Routine Checkups & Hygiene",
+        "tag": "Preventive Care",
+        "description": "Thorough examinations, gentle scaling, and polishing to protect against cavities, tartar buildup, and gum disease."
+      },
+      {
+        "slug": "teeth-whitening",
+        "title": "Cosmetic Teeth Whitening",
+        "tag": "Aesthetics",
+        "description": "Clinically proven in-office and take-home whitening treatments that safely brighten your smile by several shades."
+      },
+      {
+        "slug": "clear-aligners",
+        "title": "Clear Aligners & Orthodontics",
+        "tag": "Orthodontics",
+        "description": "Discreet, removable invisible aligners designed to gently straighten misaligned teeth without metal brackets or wires."
+      },
+      {
+        "slug": "pediatric-dentistry",
+        "title": "Children & Pediatric Care",
+        "tag": "Family Care",
+        "description": "Fun, friendly dental visits for toddlers and children that build lifelong healthy oral habits without anxiety."
+      },
+      {
+        "slug": "restorative-fillings",
+        "title": "Tooth-Colored Fillings & Crowns",
+        "tag": "Restorative",
+        "description": "Seamless, durable composite bonding and ceramic crowns that restore strength and natural aesthetics to damaged teeth."
+      },
+      {
+        "slug": "root-canal-therapy",
+        "title": "Gentle Root Canal & Emergency Care",
+        "tag": "Urgent Care",
+        "description": "Prompt relief from acute toothache with micro-precision endodontic techniques performed under gentle local anaesthetic."
+      }
+    ]
+  },
+  "whyChooseUs": {
+    "title": "Dentistry where your family's comfort comes first",
+    "subtitle": "We believe a visit to the dentist should feel as reassuring as visiting an old family friend. Modern dentistry doesn't need to be cold, rushed, or stressful.",
+    "cta": "Book Your Consultation",
+    "stats": [
+      { "value": 15, "suffix": "+", "label": "Years Experience" },
+      { "value": 5000, "suffix": "+", "label": "Smiles Restored" },
+      { "value": 99, "suffix": "%", "label": "Patient Satisfaction" }
+    ],
+    "checklist": [
+      "State-of-the-art 3D digital imaging and low-radiation diagnostics",
+      "Hospital-grade autoclave sterilization for every single instrument",
+      "Clear, upfront treatment explanations with zero unexpected fees",
+      "Dedicated gentle care techniques designed for anxious patients & children"
+    ]
+  },
+  "beforeAfter": {
+    "title": "Real Patient Smile Transformations",
+    "subtitle": "See the natural, confident results achieved through personalized cosmetic and restorative care.",
+    "before": "Before Treatment",
+    "after": "After Treatment",
+    "description": "Representative clinical case: Professional in-office whitening combined with conservative aesthetic bonding."
+  },
+  "team": {
+    "title": "Experienced specialists dedicated to your smile",
+    "subtitle": "Every clinician at Family Dental Clinic combines gentle bedside manner with advanced postgraduate clinical training.",
+    "viewAll": "Meet All Doctors & Clinical Staff"
+  },
+  "testimonials": {
+    "title": "Stories from our happy patients",
+    "subtitle": "Read firsthand experiences from families who trust us with their dental health and smiles.",
+    "items": [
+      {
+        "quote": "I used to be terrified of dental visits. The team here explained every step beforehand and made me feel completely relaxed. My teeth have never looked or felt better!",
+        "author": "Emily Vance",
+        "role": "Patient since 2021",
+        "rating": 5,
+        "treatment": "Cosmetic Whitening & Cleaning"
+      },
+      {
+        "quote": "Finding a dentist who could keep my 6-year-old calm was a game-changer. The staff was so playful and patient that my kids actually look forward to their dental checkups now.",
+        "author": "David Miller",
+        "role": "Father of two",
+        "rating": 5,
+        "treatment": "Family & Pediatric Care"
+      },
+      {
+        "quote": "The clear aligners treatment was effortless. In just 8 months, my smile was completely transformed without anyone even noticing I was wearing braces. Highly recommended!",
+        "author": "Sophia Rodriguez",
+        "role": "Patient since 2023",
+        "rating": 5,
+        "treatment": "Clear Aligners Therapy"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find clear, reassuring answers to common questions about appointments, comfort, and care.",
+    "items": [
+      {
+        "question": "How often should my family visit for a routine dental checkup?",
+        "answer": "We recommend a routine examination and professional cleaning every 6 months for most children and adults. Regular visits catch minor issues before they become painful or costly."
+      },
+      {
+        "question": "What if I experience extreme dental anxiety or fear?",
+        "answer": "You are not alone. We specialize in anxious patients. We take things at your pace, use gentle numbing techniques, explain everything beforehand, and give you full control with a simple hand-signal stop system."
+      },
+      {
+        "question": "At what age should a child first see the dentist?",
+        "answer": "We recommend bringing your child when their first tooth appears, or by their first birthday. These early visits help children get comfortable in the dental chair and prevent early tooth decay."
+      },
+      {
+        "question": "Do clear aligners work as well as traditional braces?",
+        "answer": "Yes, for the vast majority of mild to moderate alignment cases, modern clear aligners are just as effective as traditional metal braces, while being practically invisible and easily removable for meals."
+      },
+      {
+        "question": "What should I do in a dental emergency?",
+        "answer": "Call our clinic immediately. We reserve daily emergency slots for severe toothache, chipped teeth, lost fillings, or dental trauma to provide same-day pain relief."
+      },
+      {
+        "question": "Are your dental instruments sterilized for every appointment?",
+        "answer": "Yes, without exception. We follow strict hospital-grade sterilization protocols. Every instrument goes through ultrasonic cleaning and autoclave heat sterilization in sealed pouches opened in front of you."
+      }
+    ]
+  },
+  "booking": {
+    "title": "Request an Appointment",
+    "subtitle": "Choose your preferred dental service, date, and time. Our friendly reception team will confirm your visit.",
+    "name": "Full Name",
+    "namePlaceholder": "e.g. Sarah Jenkins",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+1 (555) 012-3456",
+    "service": "Service Needed",
+    "servicePlaceholder": "Select a treatment or consultation...",
+    "date": "Preferred Date",
+    "time": "Preferred Time Slot",
+    "timePlaceholder": "Select time slot...",
+    "message": "Additional notes or symptoms (Optional)",
+    "messagePlaceholder": "Tell us about any specific dental pain, previous anxiety, or questions...",
+    "submit": "Confirm Appointment Request",
+    "submitting": "Scheduling your visit...",
+    "successTitle": "Appointment Request Received!",
+    "resetButton": "Submit Another Request"
+  },
+  "finalCta": {
+    "title": "Ready for a healthier, brighter smile?",
+    "subtitle": "Schedule your consultation with Family Dental Clinic today. We take the time to listen, explain every option, and ensure you feel completely at ease.",
+    "bookButton": "Book an Appointment",
+    "callButton": "Call Reception"
+  },
+  "footer": {
+    "tagline": "A welcoming family dental clinic where every patient — from children to grandparents — receives attentive, personal care in a calm, modern setting.",
+    "hours": "Mon–Fri: 8:00 AM – 6:00 PM • Sat: 9:00 AM – 2:00 PM",
+    "quickLinks": "Quick Links",
+    "servicesTitle": "Dental Services",
+    "contactTitle": "Clinic Location",
+    "addressNote": "Central medical district with dedicated patient parking",
+    "rights": "All rights reserved.",
+    "disclaimer": "Demo preview: Clinic details, doctor biographies, and patient reviews are illustrative placeholders designed for demonstration purposes."
+  }
+}
+
